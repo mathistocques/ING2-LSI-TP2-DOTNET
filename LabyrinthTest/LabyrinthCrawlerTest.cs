@@ -29,13 +29,31 @@ public class LabyrinthCrawlerTest
     [Test]
     public void InitWithMultipleXUsesLastOne()
     {
-        Assert.That(false);
+        var laby = new Labyrinth.Labyrinth(new AsciiParser("""
+                +--+
+                | x|
+                | x|
+                +--+
+                """));
+        var test = laby.NewCrawler();
+
+        using var all = Assert.EnterMultipleScope();
+
+        Assert.That(test.X, Is.EqualTo(2));
+        Assert.That(test.Y, Is.EqualTo(2));
+        Assert.That(test.Direction, Is.EqualTo(Direction.North));
+        Assert.That(test.FacingTile, Is.TypeOf<Wall>());
     }
 
     [Test]
     public void InitWithNoXThrowsArgumentException()
     {
-        Assert.That(false);
+        Assert.Throws<ArgumentException>(() => new Labyrinth.Labyrinth(new AsciiParser("""
+                +--+
+                |  |
+                +--+
+                """)));
+
     }
     #endregion
 
