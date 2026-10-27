@@ -63,7 +63,13 @@ namespace Labyrinth
             return res.ToString();
         }
 
-        public ICrawler NewCrawler() => new Crawler(_startPosition.Item1, _startPosition.Item2, Direction.North, _tiles[_startPosition.Item1, _startPosition.Item2 +1]);
+        public ICrawler NewCrawler() => 
+            new Crawler(
+            _startPosition.Item1, 
+            _startPosition.Item2, 
+            Direction.North, 
+            _startPosition.Item1 < 0 || _startPosition.Item2 - 1 < 0 ? Outside.Singleton : _tiles[_startPosition.Item1, _startPosition.Item2 +1]
+            );
 
         private readonly Tile[,] _tiles;
         private (int, int) _startPosition;
