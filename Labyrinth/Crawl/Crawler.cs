@@ -27,11 +27,12 @@ namespace Labyrinth.Crawl
 
         public Inventory Walk()
         {
+            var inventory = tiles[X + direction.DeltaX, Y + direction.DeltaY].Pass();
             X += direction.DeltaX;
             Y += direction.DeltaY;
-            return tiles[X,Y].Pass();
-
+            return inventory;
         }
+
 
         private bool IsOut(int pos, int dimension) => pos < 0 || pos >= tiles.GetLength(dimension);
 
