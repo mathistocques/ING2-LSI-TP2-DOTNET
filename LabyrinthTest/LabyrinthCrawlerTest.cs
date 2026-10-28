@@ -133,6 +133,7 @@ public class LabyrinthCrawlerTest
         var test = laby.NewCrawler();
         test.Direction.TurnLeft();
 
+        Assert.That(test.FacingTile, Is.TypeOf<Wall>());
         Assert.That(test.Direction, Is.EqualTo(Direction.West));
     }
 
