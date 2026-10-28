@@ -1,5 +1,6 @@
 ﻿using Labyrinth.Build;
 using Labyrinth.Crawl;
+using Labyrinth.Items;
 using Labyrinth.Tiles;
 
 namespace LabyrinthTest.Crawl;
@@ -194,7 +195,17 @@ public class LabyrinthCrawlerTest
     [Test]
     public void WalkInARoomWithAnItem()
     {
-        Assert.That(false);
+        var laby = new Labyrinth.Labyrinth(new AsciiParser("""
+                +--+
+                |k/|
+                |x |
+                +--+
+                """));
+        var test = laby.NewCrawler();
+        var inventory = test.Walk();
+
+        Assert.That(inventory.HasItem, Is.True);
+        
     }
 
     [Test]
