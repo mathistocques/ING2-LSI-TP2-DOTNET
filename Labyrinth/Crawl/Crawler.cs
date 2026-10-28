@@ -27,17 +27,8 @@ namespace Labyrinth.Crawl
 
         public Inventory Walk()
         {
-            if (direction.Equals(Direction.East))
-                X++;
-
-            if (direction.Equals(Direction.West))
-                X--;
-
-            if (direction.Equals(Direction.South))
-                Y++;
-
-            if (direction.Equals(Direction.North))
-                Y--;
+            X += direction.DeltaX;
+            Y += direction.DeltaY;
             return tiles[X,Y].Pass();
 
         }
