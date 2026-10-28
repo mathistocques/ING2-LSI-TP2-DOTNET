@@ -60,7 +60,7 @@ public class LabyrinthCrawlerTest
     #region Labyrinth borders
     [Test]
     public void FacingNorthOnUpperTileReturnsOutside()
-    {
+    { 
         var laby = new Labyrinth.Labyrinth(new AsciiParser("""
                 +-x+
                 |  |
@@ -138,7 +138,23 @@ public class LabyrinthCrawlerTest
     [Test]
     public void WalkReturnsInventoryAndChangesPositionAndFacingTile()
     {
-        Assert.That(false);
+        var laby = new Labyrinth.Labyrinth(new AsciiParser("""
+                +--+
+                |  |
+                |x |
+                +--+
+                """));
+        var test = laby.NewCrawler();
+
+        var oldFacingTile = test.FacingTile;
+        var oldX = test.X;
+        var oldY = test.X;
+        var inventory = test.Walk();
+
+        Assert.That(test.X, Is.Not.EqualTo(oldX));
+        Assert.That(test.Y, Is.Not.EqualTo(oldY));
+        Assert.That(test.FacingTile, Is.Not.EqualTo(oldFacingTile));
+        Assert.That(inventory, Is.Not.Null);
     }
 
     [Test]
