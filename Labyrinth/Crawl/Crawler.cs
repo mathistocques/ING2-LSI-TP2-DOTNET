@@ -4,7 +4,7 @@ using Labyrinth.Tiles;
 
 namespace Labyrinth.Crawl
 {
-    public class Crawler(int X, int Y, Direction direction, Tile facingTile) : ICrawler
+    public class Crawler(int X, int Y, Direction direction, Tile[,] tiles) : ICrawler
     {
         int ICrawler.X => X;
 
@@ -12,11 +12,27 @@ namespace Labyrinth.Crawl
 
         Direction ICrawler.Direction => direction;
 
-        Tile ICrawler.FacingTile => facingTile;
+        Tile ICrawler.FacingTile
+        {
+            get
+            {
+                int facingX = X + direction.DeltaX;
+                int facingY = Y + direction.DeltaY;
+
+                return IsOut(facingX, 0) || IsOut(facingY, 1)
+                    ? Outside.Singleton
+                    : tiles[facingX, facingY];
+            }
+        }
 
         public Inventory Walk()
         {
             throw new NotImplementedException();
         }
+
+        private bool IsOut(int pos, int dimension) => pos < 0 || pos >= tiles.GetLength(dimension);
+
+        private int X = X;
+        private int Y = Y;
     }
 }
