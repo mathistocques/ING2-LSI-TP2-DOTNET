@@ -27,12 +27,26 @@ namespace Labyrinth.Crawl
 
         public Inventory Walk()
         {
-            throw new NotImplementedException();
+            if (direction.Equals(Direction.East))
+                X++;
+
+            if (direction.Equals(Direction.West))
+                X--;
+
+            if (direction.Equals(Direction.South))
+                Y++;
+
+            if (direction.Equals(Direction.North))
+                Y--;
+            return tiles[X,Y].Pass();
+
         }
 
         private bool IsOut(int pos, int dimension) => pos < 0 || pos >= tiles.GetLength(dimension);
 
         private int X = X;
         private int Y = Y;
+
+        private Direction direction = direction;
     }
 }
