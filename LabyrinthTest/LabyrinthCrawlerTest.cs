@@ -75,7 +75,16 @@ public class LabyrinthCrawlerTest
     [Test]
     public void FacingWestOnFarLeftTileReturnsOutside()
     {
-        Assert.That(false);
+        var laby = new Labyrinth.Labyrinth(new AsciiParser("""
+                +--+
+                x  |
+                +--+
+                """));
+        var test = laby.NewCrawler();
+        test.Direction.TurnLeft();
+
+        Assert.That(test.Direction, Is.EqualTo(Direction.West));
+        Assert.That(test.FacingTile, Is.TypeOf<Outside>());
     }
 
     [Test]
