@@ -42,7 +42,7 @@ public class LabyrinthCrawlerTest
         Assert.That(test.X, Is.EqualTo(2));
         Assert.That(test.Y, Is.EqualTo(2));
         Assert.That(test.Direction, Is.EqualTo(Direction.North));
-        Assert.That(test.FacingTile, Is.TypeOf<Wall>());
+        Assert.That(test.FacingTile, Is.TypeOf<Room>());
     }
 
     [Test]
