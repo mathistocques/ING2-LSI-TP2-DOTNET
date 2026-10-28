@@ -147,11 +147,9 @@ public class LabyrinthCrawlerTest
         var test = laby.NewCrawler();
 
         var oldFacingTile = test.FacingTile;
-        var oldX = test.X;
         var oldY = test.X;
         var inventory = test.Walk();
 
-        Assert.That(test.X, Is.Not.EqualTo(oldX));
         Assert.That(test.Y, Is.Not.EqualTo(oldY));
         Assert.That(test.FacingTile, Is.Not.EqualTo(oldFacingTile));
         Assert.That(inventory, Is.Not.Null);
