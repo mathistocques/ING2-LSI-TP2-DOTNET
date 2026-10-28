@@ -7,6 +7,8 @@ namespace Labyrinth.Build
     {
         static readonly (int, int) InvalidPosition = (-1, -1);
 
-        Tile[,] Build(out (int, int) startPosition);
+        Tile[,] Build();
+
+        event EventHandler<StartEventArgs>? StartPositionFound;
     }
 }
